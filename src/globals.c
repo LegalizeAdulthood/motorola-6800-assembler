@@ -47,5 +47,5 @@ int     CREflag = 0;            /* cross reference table flag */
 struct  nlist *root;            /* root node of the tree */
   
 FILE    *Objfil =0;             /* object file's file descriptor*/
-char    Obj_name[] = {"             "};
+char    *Obj_name = NULL;
 

@@ -120,12 +120,18 @@ void initialize(void)
 	N_page	  = 0;
 	Line[MAXBUF-1] = NEWLINE;
 
+	Obj_name = (char*) malloc(strlen(Argv[1]) + 10);
 	strcpy(Obj_name,Argv[1]); /* copy first file name into array */
+	i = (int) strlen(Obj_name) - 1;
 	do {
 	    if (Obj_name[i]=='.')
+	    {
 	       Obj_name[i]=0;
+		   break;
+		}
+		i--;
 	}
-	while (Obj_name[i++] != 0);
+	while (i > 0);
 	strcat(Obj_name,".s19");  /* append .out to file name. */
 	if( (Objfil = fopen(Obj_name,"w")) == NULL)
 		fatal("Can't create object file");
