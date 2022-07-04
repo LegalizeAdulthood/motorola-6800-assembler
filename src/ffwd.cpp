@@ -4,6 +4,8 @@
 
 #include "config.h"
 
+#include <string>
+
 #if HAVE_UNISTD_H
 #include <unistd.h>
 #endif
@@ -55,8 +57,18 @@ void fwdreinit()
     F_ref = 0;
     Ffn = 0;
     lseek(Forward, 0L, ABS); // rewind forward refs
-    read(Forward, &Ffn, sizeof(Ffn));
-    read(Forward, &F_ref, sizeof(F_ref)); // read first forward ref into mem
+    size_t count = read(Forward, &Ffn, sizeof(Ffn));
+    if (count != sizeof(Ffn))
+    {
+        const std::string msg = "Couldn't read " + std::to_string(sizeof(Ffn)) + " bytes";
+        fatal(msg.c_str());
+    }
+    count = read(Forward, &F_ref, sizeof(F_ref)); // read first forward ref into mem
+    if (count != sizeof(F_ref))
+    {
+        const std::string msg = "Couldn't read " + std::to_string(sizeof(F_ref)) + " bytes";
+        fatal(msg.c_str());
+    }
 #ifdef DEBUG
     printf("First fwd ref: %d,%d\n", Ffn, F_ref);
 #endif
@@ -67,8 +79,18 @@ void fwdreinit()
  */
 void fwdmark()
 {
-    write(Forward, &Cfn, sizeof(Cfn));
-    write(Forward, &Line_num, sizeof(Line_num));
+    size_t count = write(Forward, &Cfn, sizeof(Cfn));
+    if (count != sizeof(Cfn))
+    {
+        const std::string msg = "Couldn't write " + std::to_string(sizeof(Cfn)) + " bytes";
+        fatal(msg.c_str());
+    }
+    count = write(Forward, &Line_num, sizeof(Line_num));
+    if (count != sizeof(Line_num))
+    {
+        const std::string msg = "Couldn't write " + std::to_string(sizeof(Line_num)) + " bytes";
+        fatal(msg.c_str());
+    }
 }
 
 /*
