@@ -126,7 +126,7 @@ void f_record()
     E_total = 0;
 }
 
-char *hexstr = {"0123456789ABCDEF"};
+static const char *hexstr = "0123456789ABCDEF";
 
 void hexout(int byte)
 {
@@ -178,7 +178,7 @@ void print_line()
 /*
  *      any --- does str contain c?
  */
-int any(char c, char *str)
+int any(char c, const char *str)
 {
     while (*str != EOS)
         if (*str++ == c)
@@ -209,7 +209,7 @@ int hibyte(int i) { return ((i >> 8) & 0xFF); }
 /*
  *      head --- is str2 the head of str1?
  */
-int head(char *str1, char *str2)
+int head(const char *str1, const char *str2)
 {
     while (*str1 != EOS && *str2 != EOS)
     {

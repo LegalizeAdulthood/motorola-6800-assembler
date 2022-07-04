@@ -14,7 +14,6 @@ static void do_gen(int op, int mode);
 #include "do.h"
 #include "eval.h"
 #include "globals.h"
-#include "table.h"
 #include "util.h"
 
 /*
@@ -28,7 +27,7 @@ static int check_opcode(const char *mnemonic, int cpuOpcode, int opcode,
     if (cpuOpcode == opcode && cpuType != requiredCpu)
     {
         char msg[80];
-        char *cpuName = "(unknown)";
+        const char *cpuName = "(unknown)";
         switch (requiredCpu)
         {
         case CPU_M6805:

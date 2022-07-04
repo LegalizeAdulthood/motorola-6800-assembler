@@ -14,7 +14,7 @@
 /*
  *      install --- add a symbol to the table
  */
-int install(char *str, int val)
+int install(const char *str, int val)
 {
     struct link *lp;
     struct nlist *np, *p, *backp;
@@ -87,7 +87,7 @@ int install(char *str, int val)
 /*
  *      lookup --- find string in symbol table
  */
-struct nlist *lookup(char *name)
+struct nlist *lookup(const char *name)
 {
     struct nlist *np;
     int i;
