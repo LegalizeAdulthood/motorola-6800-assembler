@@ -2,12 +2,12 @@
  *      pseudo --- pseudo op processing
  */
 
-#ifndef _PSEUDO_H_
-#define _PSEUDO_H_
+#ifndef PSEUDO_H
+#define PSEUDO_H
 
 extern struct oper pseudo[];
 
 int sizeof_pseudo(void);
 void do_pseudo(int op /* which op */);
 
-#endif // _PSEUDO_H_
+#endif // PSEUDO_H

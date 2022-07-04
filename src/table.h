@@ -1,6 +1,5 @@
-
-#ifndef _TABLE_H_
-#define _TABLE_H_
+#ifndef TABLE_H
+#define TABLE_H
 
 #include "as.h"
 
@@ -8,4 +7,4 @@ extern struct oper table[];
 
 int sizeof_table(void);
 
-#endif // _TABLE_H_
+#endif // TABLE_H

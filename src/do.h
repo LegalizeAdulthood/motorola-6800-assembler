@@ -2,10 +2,10 @@
  *	MC6800/02 specific processing
  */
 
-#ifndef _DO_H_
-#define _DO_H_
+#ifndef DO_H
+#define DO_H
 
 void localinit(void);
 void do_op(int opcode /* base opcode */, int class /* mnemonic class */);
 
-#endif // _DO_H_
+#endif // DO_H

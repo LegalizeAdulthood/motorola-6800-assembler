@@ -2,8 +2,8 @@
  *      machine independent definitions and global variables
  */
 
-#ifndef _AS_H_
-#define _AS_H_
+#ifndef AS_H
+#define AS_H
 
 #define YES 1
 #define NO  0
@@ -82,4 +82,4 @@ struct oper
     int opcode;     /* its base opcode */
     char cycles;    /* its base # of cycles */
 };
-#endif // _AS_H_
+#endif // AS_H

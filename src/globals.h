@@ -1,7 +1,7 @@
 
 
-#ifndef _GLOBALS_H_
-#define _GLOBALS_H_
+#ifndef GLOBALS_H
+#define GLOBALS_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -62,4 +62,4 @@ typedef enum
 } CpuType;
 extern CpuType cpuType; /* result of CPU pseudo-op */
 
-#endif // _GLOBALS_H_
+#endif // GLOBALS_H

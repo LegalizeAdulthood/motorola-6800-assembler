@@ -1,9 +1,7 @@
-
-#ifndef _UTIL_H_
-#define _UTIL_H_
+#ifndef UTIL_H
+#define UTIL_H
 
 void fatal(char *str);
-;
 void error(char *str);
 void warn(char *str);
 int delim(char c);
@@ -23,4 +21,4 @@ int alphan(char c);
 int white(char c);
 char *alloc(int nbytes);
 
-#endif // _UTIL_H_
+#endif // UTIL_H

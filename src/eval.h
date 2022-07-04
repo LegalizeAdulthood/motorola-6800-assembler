@@ -2,11 +2,11 @@
  *      eval --- evaluate expression
  */
 
-#ifndef _EVAL_H_
-#define _EVAL_H_
+#ifndef EVAL_H
+#define EVAL_H
 
 int eval(void);
 int is_op(char c);
 int get_term(void);
 
-#endif // _EVAL_H_
+#endif // EVAL_H
