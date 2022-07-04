@@ -23,8 +23,6 @@ add_library(asm
     util.c
     util.h
     ${CMAKE_CURRENT_BINARY_DIR}/config.h
-    ../test/all_6805_opcodes_by_name.asm
-    ../test/all_6805_opcodes_by_name.asm
 )
 target_include_directories(asm PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 
