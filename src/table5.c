@@ -1,6 +1,8 @@
 
 #include "table.h"
 
+#define NULL_OP 9       /* null pseudo op               */
+
 struct oper table[] = {
 {"adc",  GEN,    0xA9,	2},
 {"add",  GEN,    0xAB,	2},
@@ -63,7 +65,7 @@ struct oper table[] = {
 {"lsr",  GRP2,   0x34,	4},
 {"lsra", INH,    0x44,   4},
 {"lsrx", INH,    0x54,   4},
-{"mul",  INH,    0x42,  11},             /* HC05C4 ONLY */
+{"mul",  INH | VARIANT,    0x42,  11},             /* HC05C4 ONLY */
 {"neg",  GRP2,   0x30,	4},
 {"nega", INH,    0x40,   4},
 {"negx", INH,    0x50,   4},
@@ -82,7 +84,7 @@ struct oper table[] = {
 {"sec",  INH,    0x99,	2},
 {"sei",  INH,    0x9B,	2},
 {"sta",  NOIMM,  0xA7,   3},
-{"stop", INH,    0x8E,   2},      /* CMOS only */
+{"stop", INH | VARIANT,    0x8E,   2},      /* CMOS only */
 {"stx",  NOIMM,  0xAF,   3},
 {"sub",  GEN,    0xA0,	2},
 {"swi",  INH,    0x83,   11},
@@ -91,7 +93,7 @@ struct oper table[] = {
 {"tsta", INH,    0x4D,   4},
 {"tstx", INH,    0x5D,   4},
 {"txa",  INH,    0x9F,	2},
-{"wait", INH,    0x8F,   2} /* CMOS only */
+{"wait", INH | VARIANT,    0x8F,   2} /* CMOS only */
 };
 
 int sizeof_table(void)

@@ -15,12 +15,37 @@ static void do_gen(int op, int mode);
 #include "as.h"
 #include "util.h"
 #include "eval.h"
+#include "table.h"
 
 /*
  *      localinit --- machine specific initialization
  */
 void localinit(void)
 {
+}
+
+static int check_opcode(const char *mnemonic, int cpuOpcode, int opcode, CpuType requiredCpu)
+{
+    if (cpuOpcode == opcode && cpuType != requiredCpu)
+    {
+	char msg[80];
+	char *cpuName = "(unknown)";
+	switch (requiredCpu)
+	{
+	case CPU_M6805:
+	    cpuName = "cmos";
+	    break;
+	case CPU_HC05C4:
+	    cpuName = "hc05c4";
+	    break;
+	default:
+	    break;
+	}
+	sprintf(msg, "%s opcode only supported on 'cpu %s'", mnemonic, cpuName);
+	error(msg);
+	return 1;
+    }
+    return 0;
 }
 
 /*
@@ -44,6 +69,17 @@ void do_op(int opcode /* base opcode */, int class /* mnemonic class */)
 			break;
 			}
 	if( *Optr == '#' ) amode = IMMED;
+
+	if (class & VARIANT)
+	{
+	    class &= ~VARIANT;
+	    if (check_opcode("mul", 0x42, opcode, CPU_HC05C4) 
+		|| check_opcode("stop", 0x8E, opcode, CPU_M6805)
+		|| check_opcode("wait", 0x8F, opcode, CPU_M6805))
+	    {
+		return;
+	    }
+	}
 
 	switch(class){
 		case INH:                       /* inherent addressing */

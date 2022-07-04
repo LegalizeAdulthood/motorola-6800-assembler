@@ -58,6 +58,7 @@
 #define BIT     33      /* bit manipulation        6301 */
 #define SYS     34      /* syscalls (really swi)        */
 #define PSEUDO  35      /* Pseudo ops                   */
+#define VARIANT 64      /* Flag for CPU variant ops     */
 
 struct link { /* linked list to hold line numbers */
        int L_num; /* line number */

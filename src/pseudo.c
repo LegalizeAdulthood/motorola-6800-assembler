@@ -20,9 +20,11 @@
 #define OPT     8       /* assembler option             */
 #define NULL_OP 9       /* null pseudo op               */
 #define PAGE    10      /* new page                     */
+#define CPU     11      /* specify cpu variant          */
 
 struct oper pseudo[] = {
 {"bsz",  PSEUDO, ZMB,    0},
+{"cpu",  PSEUDO, CPU,    0},
 {"end",  PSEUDO, NULL_OP,0},
 {"equ",  PSEUDO, EQU,    0},
 {"fcb",  PSEUDO, FCB,    0},
@@ -40,6 +42,8 @@ struct oper pseudo[] = {
 {"ttl",  PSEUDO, NULL_OP,0},
 {"zmb",  PSEUDO, ZMB,    0}
 };
+
+CpuType cpuType = CPU_UNKNOWN;
 
 int sizeof_pseudo(void)
 {
@@ -173,6 +177,18 @@ void do_pseudo(int op /* which op */)
                         break;
                 case NULL_OP:                   /* ignored psuedo ops */
                         P_force=0;
+                        break;
+                case CPU:
+                        if (head(Operand, "cmos"))
+                            cpuType = CPU_M6805;
+                        else if (head(Operand, "hc05c4"))
+                            cpuType = CPU_HC05C4;
+                        else
+                        {
+                            char msg[80];
+                            sprintf(msg, "Unrecognized CPU type '%s'", Operand);
+	                    error(msg);
+                        }
                         break;
                 default:
                         fatal("Pseudo error");

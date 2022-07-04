@@ -55,5 +55,12 @@ extern struct  nlist *root;            /* root node of the tree */
 extern FILE    *Objfil;             /* object file's file descriptor*/
 extern char    *Obj_name;
 
+typedef enum {
+    CPU_UNKNOWN = 0, /* CPU not specified */
+    CPU_M6805, /* enables CMOS instructions STOP, WAIT */
+    CPU_HC05C4, /* enables MUL instruction */
+} CpuType;
+extern CpuType cpuType;  /* result of CPU pseudo-op */
+
 #endif // _GLOBALS_H_
 

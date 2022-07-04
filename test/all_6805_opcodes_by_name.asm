@@ -38,21 +38,13 @@
 	bcc *+$26
 * =-=-=-=-= BCLR - Bit CLeaR =-=-=-=-=
 	bclr 0,$11
-	bclr0 $11
 	bclr 1,$13
-	bclr1 $13
 	bclr 2,$15
-	bclr2 $15
 	bclr 3,$17
-	bclr3 $17
 	bclr 4,$19
-	bclr4 $19
 	bclr 5,$1B
-	bclr5 $1B
 	bclr 6,$1D
-	bclr6 $1D
 	bclr 7,$1F
-	bclr7 $1F
 * =-=-=-=-= BCS (same as BLO) - Branch if Carry is Set =-=-=-=-=
 	bcs *+$27
 * =-=-=-=-= BEQ - Branch of EQual =-=-=-=-=
@@ -94,57 +86,33 @@
 	bra *+$22
 * =-=-=-=-= BRCLR - BRanch if bit is CLeaR =-=-=-=-=
 	brclr 0,$01,*+$4
-	brclr0 $01,*+$4
 	brclr 1,$03,*+$6
-	brclr1 $03,*+$6
 	brclr 2,$05,*+$8
-	brclr2 $05,*+$8
 	brclr 3,$07,*+$A
-	brclr3 $07,*+$A
 	brclr 4,$09,*+$C
-	brclr4 $09,*+$C
 	brclr 5,$0B,*+$E
-	brclr5 $0B,*+$E
 	brclr 6,$0D,*+$10
-	brclr6 $0D,*+$10
 	brclr 7,$0F,*+$12
-	brclr7 $0F,*+$12
 * =-=-=-=-= BRN - Branch Never (basicly a 2 or 3 byte NOP) =-=-=-=-=
 	brn *+$23
 * =-=-=-=-= BRSET - BRanch if bit is SET =-=-=-=-=
 	brset 0,$00,*+$3
-	brset0 $00,*+$3
 	brset 1,$02,*+$5
-	brset1 $02,*+$5
 	brset 2,$04,*+$7
-	brset2 $04,*+$7
 	brset 3,$06,*+$9
-	brset3 $06,*+$9
 	brset 4,$08,*+$B
-	brset4 $08,*+$B
 	brset 5,$0A,*+$D
-	brset5 $0A,*+$D
 	brset 6,$0C,*+$F
-	brset6 $0C,*+$F
 	brset 7,$0E,*+$11
-	brset7 $0E,*+$11
 * =-=-=-=-= BSET - Bit SET =-=-=-=-=
 	bset 0,$10
-	bset0 $10
 	bset 1,$12
-	bset1 $12
 	bset 2,$14
-	bset2 $14
 	bset 3,$16
-	bset3 $16
 	bset 4,$18
-	bset4 $18
 	bset 5,$1A
-	bset5 $1A
 	bset 6,$1C
-	bset6 $1C
 	bset 7,$1E
-	bset7 $1E
 * =-=-=-=-= BSR - Branch to SubRoutine =-=-=-=-=
 	bsr *-$51
 * =-=-=-=-= CLC =-=-=-=-=
@@ -188,7 +156,6 @@
 	dec $3A
 	deca
 	decx
-	dex
 	dec $6A,x
 	dec ,x
 * =-=-=-=-= EOR - Exclusive OR =-=-=-=-=
@@ -202,7 +169,6 @@
 	inc $3C
 	inca
 	incx
-	inx
 	inc $6C,x
 	inc ,x
 * =-=-=-=-= JMP - JuMP to address =-=-=-=-=
@@ -314,12 +280,6 @@
 	swi
 * =-=-=-=-= TAX - Transfer A to X =-=-=-=-=
 	tax
-* =-=-=-=-= TFR - TransFeR register to register =-=-=-=-=
-	tfr a,x
-	tfr s,a
-	tfr x,a
-* =-=-=-=-= TSA - Transfer S to A =-=-=-=-=
-	tsa
 * =-=-=-=-= TST - TeST =-=-=-=-=
 	tst $3E
 	tsta
