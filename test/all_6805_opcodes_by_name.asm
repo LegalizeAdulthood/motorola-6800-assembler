@@ -1,43 +1,42 @@
-	machine 6805	; selects 6805 CPU
 	org $E000
 
 
-; =-=-=-=-= ADC - ADd with Carry =-=-=-=-=
+* =-=-=-=-= ADC - ADd with Carry =-=-=-=-=
 	adc #$A9
 	adc $B9
 	adc $C9C9
 	adc $D9D9,x
 	adc $E9,x
 	adc ,x
-; =-=-=-=-= ADD - ADDition =-=-=-=-=
+* =-=-=-=-= ADD - ADDition =-=-=-=-=
 	add #$AB
 	add $BB
 	add $CBCB
 	add $DBDB,x
 	add $EB,x
 	add ,x
-; =-=-=-=-= AND - logical AND =-=-=-=-=
+* =-=-=-=-= AND - logical AND =-=-=-=-=
 	and #$A4
 	and $B4
 	and $C4C4
 	and $D4D4,x
 	and $E4,x
 	and ,x
-; =-=-=-=-= ASL (same as LSL) =-=-=-=-=
+* =-=-=-=-= ASL (same as LSL) =-=-=-=-=
 	asl $BA
 	asla
 	aslx
 	asl $EA,x
 	asl ,x
-; =-=-=-=-= ASR =-=-=-=-=
+* =-=-=-=-= ASR =-=-=-=-=
 	asr $37
 	asra
 	asrx
 	asr $67,x
 	asr ,x
-; =-=-=-=-= BCC (same as BHS) - Branch if Carry is Clear =-=-=-=-=
+* =-=-=-=-= BCC (same as BHS) - Branch if Carry is Clear =-=-=-=-=
 	bcc *+$26
-; =-=-=-=-= BCLR - Bit CLeaR =-=-=-=-=
+* =-=-=-=-= BCLR - Bit CLeaR =-=-=-=-=
 	bclr 0,$11
 	bclr0 $11
 	bclr 1,$13
@@ -54,46 +53,46 @@
 	bclr6 $1D
 	bclr 7,$1F
 	bclr7 $1F
-; =-=-=-=-= BCS (same as BLO) - Branch if Carry is Set =-=-=-=-=
+* =-=-=-=-= BCS (same as BLO) - Branch if Carry is Set =-=-=-=-=
 	bcs *+$27
-; =-=-=-=-= BEQ - Branch of EQual =-=-=-=-=
+* =-=-=-=-= BEQ - Branch of EQual =-=-=-=-=
 	beq *+$29
-; =-=-=-=-= BHCC - Branch if Half Carry is Clear =-=-=-=-=
+* =-=-=-=-= BHCC - Branch if Half Carry is Clear =-=-=-=-=
 	bhcc *+$2A
-; =-=-=-=-= BHCS - Branch if Half Carry is Set =-=-=-=-=
+* =-=-=-=-= BHCS - Branch if Half Carry is Set =-=-=-=-=
 	bhcs *+$2B
-; =-=-=-=-= BHI - Branch if HIgher =-=-=-=-=
+* =-=-=-=-= BHI - Branch if HIgher =-=-=-=-=
 	bhi *+$24
-; =-=-=-=-= BHS (same as BCC) - Branch if Higher or Same =-=-=-=-=
+* =-=-=-=-= BHS (same as BCC) - Branch if Higher or Same =-=-=-=-=
 	bhs *+$26
-; =-=-=-=-= BIH =-=-=-=-=
+* =-=-=-=-= BIH =-=-=-=-=
 	bih *+$31
-; =-=-=-=-= BIL =-=-=-=-=
+* =-=-=-=-= BIL =-=-=-=-=
 	bil *+$30
-; =-=-=-=-= BIT - BIt Test and compare =-=-=-=-=
+* =-=-=-=-= BIT - BIt Test and compare =-=-=-=-=
 	bit #$A5
 	bit $B5
 	bit $C5C5
 	bit $D5D5,x
 	bit $E5,x
 	bit ,x
-; =-=-=-=-= BLO (same as BCS) - Branch if LOwer =-=-=-=-=
+* =-=-=-=-= BLO (same as BCS) - Branch if LOwer =-=-=-=-=
 	blo *+$27
-; =-=-=-=-= BLS - Branch if Less or Same =-=-=-=-=
+* =-=-=-=-= BLS - Branch if Less or Same =-=-=-=-=
 	bls *+$25
-; =-=-=-=-= BMC =-=-=-=-=
+* =-=-=-=-= BMC =-=-=-=-=
 	bmc *+$2E
-; =-=-=-=-= BMI =-=-=-=-=
+* =-=-=-=-= BMI =-=-=-=-=
 	bmi *+$2D
-; =-=-=-=-= BMS =-=-=-=-=
+* =-=-=-=-= BMS =-=-=-=-=
 	bms *+$2F
-; =-=-=-=-= BNE - Branch if Not Equal =-=-=-=-=
+* =-=-=-=-= BNE - Branch if Not Equal =-=-=-=-=
 	bne *+$28
-; =-=-=-=-= BPL - Branch if PLus =-=-=-=-=
+* =-=-=-=-= BPL - Branch if PLus =-=-=-=-=
 	bpl *+$2C
-; =-=-=-=-= BRA - BRAnch =-=-=-=-=
+* =-=-=-=-= BRA - BRAnch =-=-=-=-=
 	bra *+$22
-; =-=-=-=-= BRCLR - BRanch if bit is CLeaR =-=-=-=-=
+* =-=-=-=-= BRCLR - BRanch if bit is CLeaR =-=-=-=-=
 	brclr 0,$01,*+$4
 	brclr0 $01,*+$4
 	brclr 1,$03,*+$6
@@ -110,9 +109,9 @@
 	brclr6 $0D,*+$10
 	brclr 7,$0F,*+$12
 	brclr7 $0F,*+$12
-; =-=-=-=-= BRN - Branch Never (basicly a 2 or 3 byte NOP) =-=-=-=-=
+* =-=-=-=-= BRN - Branch Never (basicly a 2 or 3 byte NOP) =-=-=-=-=
 	brn *+$23
-; =-=-=-=-= BRSET - BRanch if bit is SET =-=-=-=-=
+* =-=-=-=-= BRSET - BRanch if bit is SET =-=-=-=-=
 	brset 0,$00,*+$3
 	brset0 $00,*+$3
 	brset 1,$02,*+$5
@@ -129,7 +128,7 @@
 	brset6 $0C,*+$F
 	brset 7,$0E,*+$11
 	brset7 $0E,*+$11
-; =-=-=-=-= BSET - Bit SET =-=-=-=-=
+* =-=-=-=-= BSET - Bit SET =-=-=-=-=
 	bset 0,$10
 	bset0 $10
 	bset 1,$12
@@ -146,188 +145,188 @@
 	bset6 $1C
 	bset 7,$1E
 	bset7 $1E
-; =-=-=-=-= BSR - Branch to SubRoutine =-=-=-=-=
+* =-=-=-=-= BSR - Branch to SubRoutine =-=-=-=-=
 	bsr *-$51
-; =-=-=-=-= CLC =-=-=-=-=
+* =-=-=-=-= CLC =-=-=-=-=
 	clc
-; =-=-=-=-= CLI =-=-=-=-=
+* =-=-=-=-= CLI =-=-=-=-=
 	cli
-; =-=-=-=-= CLR - CLeaR =-=-=-=-=
+* =-=-=-=-= CLR - CLeaR =-=-=-=-=
 	clr $3F
 	clra
 	clrx
 	clr $6F,x
 	clr ,x
-; =-=-=-=-= CMP - CoMPare =-=-=-=-=
+* =-=-=-=-= CMP - CoMPare =-=-=-=-=
 	cmp #$A1
 	cmp $B1
 	cmp $C1C1
 	cmp $D1D1,x
 	cmp $E1,x
 	cmp ,x
-; =-=-=-=-= CMPX - CoMPare with X =-=-=-=-=
+* =-=-=-=-= CMPX - CoMPare with X =-=-=-=-=
 	cmpx #$A3
 	cmpx $B3
 	cmpx $C3C3
 	cmpx $D3D3,x
 	cmpx $E3,x
 	cmpx ,x
-; =-=-=-=-= COM - COMpliment =-=-=-=-=
+* =-=-=-=-= COM - COMpliment =-=-=-=-=
 	com $3F
 	coma
 	comx
 	com $6F,x
 	com ,x
-; =-=-=-=-= CPX - ComPare with X =-=-=-=-=
+* =-=-=-=-= CPX - ComPare with X =-=-=-=-=
 	cpx #$A3
 	cpx $B3
 	cpx $C3C3
 	cpx $D3D3,x
 	cpx $E3,x
 	cpx ,x
-; =-=-=-=-= DEC - DECriment =-=-=-=-=
+* =-=-=-=-= DEC - DECriment =-=-=-=-=
 	dec $3A
 	deca
 	decx
 	dex
 	dec $6A,x
 	dec ,x
-; =-=-=-=-= EOR - Exclusive OR =-=-=-=-=
+* =-=-=-=-= EOR - Exclusive OR =-=-=-=-=
 	eor #$A8
 	eor $B8
 	eor $C8C8
 	eor $D8D8,x
 	eor $E8,x
 	eor ,x
-; =-=-=-=-= INC =-=-=-=-=
+* =-=-=-=-= INC =-=-=-=-=
 	inc $3C
 	inca
 	incx
 	inx
 	inc $6C,x
 	inc ,x
-; =-=-=-=-= JMP - JuMP to address =-=-=-=-=
+* =-=-=-=-= JMP - JuMP to address =-=-=-=-=
 	jmp $BC
 	jmp $CCCC
 	jmp $DCDC,x
 	jmp $EC,x
 	jmp ,x
-; =-=-=-=-= JSR - Jump to SubRoutine =-=-=-=-=
+* =-=-=-=-= JSR - Jump to SubRoutine =-=-=-=-=
 	jsr $BD
 	jsr $CDCD
 	jsr $DDDD,x
 	jsr $ED,x
 	jsr ,x
-; =-=-=-=-= LDA - LoaD register A =-=-=-=-=
+* =-=-=-=-= LDA - LoaD register A =-=-=-=-=
 	lda #$A6
 	lda $B6
 	lda $C6C6
 	lda $D6D6,x
 	lda $E6,x
 	lda ,x
-; =-=-=-=-= LDX - LoaD register X =-=-=-=-=
+* =-=-=-=-= LDX - LoaD register X =-=-=-=-=
 	ldx #$AE
 	ldx $BE
 	ldx $CECE
 	ldx $DEDE,x
 	ldx $EE,x
 	ldx ,x
-; =-=-=-=-= LSL (same as ASL) =-=-=-=-=
+* =-=-=-=-= LSL (same as ASL) =-=-=-=-=
 	lsl $38
 	lsra
 	lsrx
 	lsl $68,x
 	lsl ,x
-; =-=-=-=-= LSR =-=-=-=-=
+* =-=-=-=-= LSR =-=-=-=-=
 	lsr $34
 	lsra
 	lsrx
 	lsr $64,x
 	lsr ,x
-; =-=-=-=-= MUL =-=-=-=-=
+* =-=-=-=-= MUL =-=-=-=-=
 	mul
-; =-=-=-=-= NEG =-=-=-=-=
+* =-=-=-=-= NEG =-=-=-=-=
 	neg $30
 	nega
 	negx
 	neg $60,x
 	neg ,x
-; =-=-=-=-= NOP =-=-=-=-=
+* =-=-=-=-= NOP =-=-=-=-=
 	nop
-; =-=-=-=-= ORA - OR with register A =-=-=-=-=
+* =-=-=-=-= ORA - OR with register A =-=-=-=-=
 	ora #$AA
 	ora $BA
 	ora $CACA
 	ora $DADA,x
 	ora $EA,x
 	ora ,x
-; =-=-=-=-= ROL =-=-=-=-=
+* =-=-=-=-= ROL =-=-=-=-=
 	rol $39
 	rola
 	rolx
 	rol $69,x
 	rol ,x
-; =-=-=-=-= ROR =-=-=-=-=
+* =-=-=-=-= ROR =-=-=-=-=
 	ror $36
 	rora
 	rorx
 	ror $66,x
 	ror ,x
-; =-=-=-=-= RSP - Reset Stack Pointer =-=-=-=-=
+* =-=-=-=-= RSP - Reset Stack Pointer =-=-=-=-=
 	rsp
-; =-=-=-=-= RTI - ReTurn from Interrupt =-=-=-=-=
+* =-=-=-=-= RTI - ReTurn from Interrupt =-=-=-=-=
 	rti
-; =-=-=-=-= RTS - ReTurn from Subroutine =-=-=-=-=
+* =-=-=-=-= RTS - ReTurn from Subroutine =-=-=-=-=
 	rts
-; =-=-=-=-= SBC - SuBtract with Carry =-=-=-=-=
+* =-=-=-=-= SBC - SuBtract with Carry =-=-=-=-=
 	sbc #$A2
 	sbc $B2
 	sbc $C2C2
 	sbc $D2D2,x
 	sbc $E2,x
 	sbc ,x
-; =-=-=-=-= SEC =-=-=-=-=
+* =-=-=-=-= SEC =-=-=-=-=
 	sec
-; =-=-=-=-= SEI =-=-=-=-=
+* =-=-=-=-= SEI =-=-=-=-=
 	sei
-; =-=-=-=-= STA - STore register A =-=-=-=-=
+* =-=-=-=-= STA - STore register A =-=-=-=-=
 	sta $B7
 	sta $C7C7
 	sta $D7D7,x
 	sta $E7,x
 	sta ,x
-; =-=-=-=-= STOP =-=-=-=-=
+* =-=-=-=-= STOP =-=-=-=-=
 	stop
-; =-=-=-=-= STX - STore register X =-=-=-=-=
+* =-=-=-=-= STX - STore register X =-=-=-=-=
 	stx $BF
 	stx $CFCF
 	stx $DFDF,x
 	stx $EF,x
 	stx ,x
-; =-=-=-=-= SUB - SUBtract =-=-=-=-=
+* =-=-=-=-= SUB - SUBtract =-=-=-=-=
 	sub #$A0
 	sub $B0
 	sub $C0C0
 	sub $D0D0,x
 	sub $E0,x
 	sub ,x
-; =-=-=-=-= SWI - SoftWare Interrupt =-=-=-=-=
+* =-=-=-=-= SWI - SoftWare Interrupt =-=-=-=-=
 	swi
-; =-=-=-=-= TAX - Transfer A to X =-=-=-=-=
+* =-=-=-=-= TAX - Transfer A to X =-=-=-=-=
 	tax
-; =-=-=-=-= TFR - TransFeR register to register =-=-=-=-=
+* =-=-=-=-= TFR - TransFeR register to register =-=-=-=-=
 	tfr a,x
 	tfr s,a
 	tfr x,a
-; =-=-=-=-= TSA - Transfer S to A =-=-=-=-=
+* =-=-=-=-= TSA - Transfer S to A =-=-=-=-=
 	tsa
-; =-=-=-=-= TST - TeST =-=-=-=-=
+* =-=-=-=-= TST - TeST =-=-=-=-=
 	tst $3E
 	tsta
 	tstx
 	tst $6E,x
 	tst ,x
-; =-=-=-=-= TXA - Transfer X to A =-=-=-=-=
+* =-=-=-=-= TXA - Transfer X to A =-=-=-=-=
 	txa
-; =-=-=-=-= WAIT =-=-=-=-=
+* =-=-=-=-= WAIT =-=-=-=-=
 	wait

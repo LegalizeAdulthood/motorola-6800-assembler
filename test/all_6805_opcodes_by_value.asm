@@ -1,8 +1,8 @@
 	cpu 6805
 	.org $e000
 
-;********** Single byte opcodes **********
-;=-= Opcodes 0x =-=-=-=-=-=-=-=-=
+*********** Single byte opcodes **********
+*=-= Opcodes 0x =-=-=-=-=-=-=-=-=
 	brset0 $00,*+3
 	brclr0 $01,*+4
 	brset1 $02,*+5
@@ -19,7 +19,7 @@
 	brclr6 $0D,*+16
 	brset7 $0E,*+17
 	brclr7 $0F,*+18
-;=-= Opcodes 0x =-=-=-=-=-=-=-=-=
+*=-= Opcodes 0x =-=-=-=-=-=-=-=-=
 	brset 0,$00,*+3
 	brclr 0,$01,*+4
 	brset 1,$02,*+5
@@ -36,7 +36,7 @@
 	brclr 6,$0D,*+16
 	brset 7,$0E,*+17
 	brclr 7,$0F,*+18
-;=-= Opcodes 1x =-=-=-=-=-=-=-=-=
+*=-= Opcodes 1x =-=-=-=-=-=-=-=-=
 	bset0 $10
 	bclr0 $11
 	bset1 $12
@@ -53,7 +53,7 @@
 	bclr6 $1D
 	bset7 $1E
 	bclr7 $1F
-;=-= Opcodes 1x =-=-=-=-=-=-=-=-=
+*=-= Opcodes 1x =-=-=-=-=-=-=-=-=
 	bset 0,$10
 	bclr 0,$11
 	bset 1,$12
@@ -70,14 +70,14 @@
 	bclr 6,$1D
 	bset 7,$1E
 	bclr 7,$1F
-;=-= Opcodes 2x =-=-=-=-=-=-=-=-=
+*=-= Opcodes 2x =-=-=-=-=-=-=-=-=
 label3:	bra *+$22
 	brn *+$23
 	bhi *+$24
 	bls *+$25
 	bcc *+$26
-	bcs *+$27 ; same as blo
-	blo *+$27 ; same as bcs
+	bcs *+$27 * same as blo
+	blo *+$27 * same as bcs
 	bne *+$28
 	beq *+$29
 	bhcc *+$2A
@@ -88,79 +88,79 @@ label3:	bra *+$22
 	bms *+$2F
 	bil *+$30
 	bih *+$31
-;=-= Opcodes 3x =-=-=-=-=-=-=-=-=
+*=-= Opcodes 3x =-=-=-=-=-=-=-=-=
 	neg $30
 	com $33
 	lsr $34
 	ror $36
 	asr $37
-	asl $38 ; same as lsl
-	lsl $38 ; same as asl
+	asl $38 * same as lsl
+	lsl $38 * same as asl
 	rol $39
 	dec $3A
 	inc $3C
 	tst $3D
 	clr $3F
-;=-= Opcodes 4x =-=-=-=-=-=-=-=-=
+*=-= Opcodes 4x =-=-=-=-=-=-=-=-=
 	nega
 	coma
 	mul
 	lsra
 	rora
 	asra
-	asla ; same as lsla
-	lsla ; same as asla
+	asla * same as lsla
+	lsla * same as asla
 	rola
 	deca
 	inca
 	tsta
 	clra
-;=-= Opcodes 5x =-=-=-=-=-=-=-=-=
+*=-= Opcodes 5x =-=-=-=-=-=-=-=-=
 	negx
 	comx
 	lsrx
 	rorx
 	asrx
-	aslx ; same as lslx
-	lslx ; same as aslx
+	aslx * same as lslx
+	lslx * same as aslx
 	rolx
 	decx
 	incx
 	tstx
 	clrx
-;=-= Opcodes 6x =-=-=-=-=-=-=-=-=
+*=-= Opcodes 6x =-=-=-=-=-=-=-=-=
 	neg $60,x
 	com $63,x
 	lsr $64,x
 	ror $66,x
 	asr $67,x
-	asl $68,x ; same as lsl
-	lsl $68,x ; same as asl
+	asl $68,x * same as lsl
+	lsl $68,x * same as asl
 	rol $69,x
 	dec $6A,x
 	inc $6C,x
 	tst $6D,x
 	clr $6F,x
-;=-= Opcodes 7x =-=-=-=-=-=-=-=-=
+*=-= Opcodes 7x =-=-=-=-=-=-=-=-=
 	neg ,x
 	com ,x
 	lsr ,x
 	ror ,x
 	asr ,x
-	asl ,x ; same as lsl
-	lsl ,x ; same as asl
+	asl ,x * same as lsl
+	lsl ,x * same as asl
 	rol ,x
 	dec ,x
 	inc ,x
 	tst ,x
 	clr ,x
-;=-= Opcodes 8x =-=-=-=-=-=-=-=-=
+*=-= Opcodes 8x =-=-=-=-=-=-=-=-=
 	rti
 	rts
 	swi
 	stop
 	wait
-;=-= Opcodes 9x =-=-=-=-=-=-=-=-=
+*=-= Opcodes 9x =-=-=-=-=-=-=-=-=
 	tax
 	tfr a,x
 	clc
@@ -173,7 +173,7 @@ label3:	bra *+$22
 	tfr s,a
 	txa
 	tfr x,a
-;=-= Opcodes Ax =-=-=-=-=-=-=-=-=
+*=-= Opcodes Ax =-=-=-=-=-=-=-=-=
 label4:	sub #$A0
 	cmp #$A1
 	sbc #$A2
@@ -187,7 +187,7 @@ label4:	sub #$A0
 	add #$AB
 	bsr label4
 	ldx #$AE
-;=-= Opcodes Bx =-=-=-=-=-=-=-=-=
+*=-= Opcodes Bx =-=-=-=-=-=-=-=-=
 	sub $B0
 	cmp $B1
 	sbc $B2
@@ -204,7 +204,7 @@ label4:	sub #$A0
 	jsr $BD
 	ldx $BE
 	stx $BF
-;=-= Opcodes Cx =-=-=-=-=-=-=-=-=
+*=-= Opcodes Cx =-=-=-=-=-=-=-=-=
 	sub $C0C0
 	cmp $C1C1
 	sbc $C2C2
@@ -221,7 +221,7 @@ label4:	sub #$A0
 	jsr $CDCD
 	ldx $CECE
 	stx $CFCF
-;=-= Opcodes Dx =-=-=-=-=-=-=-=-=
+*=-= Opcodes Dx =-=-=-=-=-=-=-=-=
 	sub $D0D0,x
 	cmp $D1D1,x
 	sbc $D2D2,x
@@ -238,7 +238,7 @@ label4:	sub #$A0
 	jsr $DDDD,x
 	ldx $DEDE,x
 	stx $DFDF,x
-;=-= Opcodes Ex =-=-=-=-=-=-=-=-=
+*=-= Opcodes Ex =-=-=-=-=-=-=-=-=
 	sub $E0,x
 	cmp $E1,x
 	sbc $E2,x
@@ -255,7 +255,7 @@ label4:	sub #$A0
 	jsr $ED,x
 	ldx $EE,x
 	stx $EF,x
-;=-= Opcodes Fx =-=-=-=-=-=-=-=-=
+*=-= Opcodes Fx =-=-=-=-=-=-=-=-=
 	sub ,x
 	cmp ,x
 	sbc ,x
