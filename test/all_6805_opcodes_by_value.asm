@@ -1,24 +1,7 @@
-	cpu 6805
-	.org $e000
+	cpu cmos
+	org $e000
 
 *********** Single byte opcodes **********
-*=-= Opcodes 0x =-=-=-=-=-=-=-=-=
-	brset0 $00,*+3
-	brclr0 $01,*+4
-	brset1 $02,*+5
-	brclr1 $03,*+6
-	brset2 $04,*+7
-	brclr2 $05,*+8
-	brset3 $06,*+9
-	brclr3 $07,*+10
-	brset4 $08,*+11
-	brclr4 $09,*+12
-	brset5 $0A,*+13
-	brclr5 $0B,*+14
-	brset6 $0C,*+15
-	brclr6 $0D,*+16
-	brset7 $0E,*+17
-	brclr7 $0F,*+18
 *=-= Opcodes 0x =-=-=-=-=-=-=-=-=
 	brset 0,$00,*+3
 	brclr 0,$01,*+4
@@ -36,23 +19,6 @@
 	brclr 6,$0D,*+16
 	brset 7,$0E,*+17
 	brclr 7,$0F,*+18
-*=-= Opcodes 1x =-=-=-=-=-=-=-=-=
-	bset0 $10
-	bclr0 $11
-	bset1 $12
-	bclr1 $13
-	bset2 $14
-	bclr2 $15
-	bset3 $16
-	bclr3 $17
-	bset4 $18
-	bclr4 $19
-	bset5 $1A
-	bclr5 $1B
-	bset6 $1C
-	bclr6 $1D
-	bset7 $1E
-	bclr7 $1F
 *=-= Opcodes 1x =-=-=-=-=-=-=-=-=
 	bset 0,$10
 	bclr 0,$11
@@ -104,7 +70,6 @@ label3:	bra *+$22
 *=-= Opcodes 4x =-=-=-=-=-=-=-=-=
 	nega
 	coma
-	mul
 	lsra
 	rora
 	asra
@@ -162,17 +127,13 @@ label3:	bra *+$22
 	wait
 *=-= Opcodes 9x =-=-=-=-=-=-=-=-=
 	tax
-	tfr a,x
 	clc
 	sec
 	cli
 	sei
 	rsp
 	nop
-	tsa
-	tfr s,a
 	txa
-	tfr x,a
 *=-= Opcodes Ax =-=-=-=-=-=-=-=-=
 label4:	sub #$A0
 	cmp #$A1

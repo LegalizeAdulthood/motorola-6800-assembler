@@ -1,3 +1,4 @@
+	cpu cmos
 	org $E000
 
 
@@ -209,8 +210,6 @@
 	lsrx
 	lsr $64,x
 	lsr ,x
-* =-=-=-=-= MUL =-=-=-=-=
-	mul
 * =-=-=-=-= NEG =-=-=-=-=
 	neg $30
 	nega
