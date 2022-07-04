@@ -43,7 +43,7 @@
 #include "symtab.h"
 #include "util.h"
 
-int eval(void)
+int eval()
 {
     int left, right; /* left and right terms for expression */
     char o;          /* operator character */
@@ -119,7 +119,7 @@ int is_op(char c)
 /*
  *      get_term --- evaluate a single item in an expression
  */
-int get_term(void)
+int get_term()
 {
     char hold[MAXBUF];
     char *tmp;

@@ -5,9 +5,9 @@
 #ifndef FFWD_H
 #define FFWD_H
 
-void fwdinit(void);
-void fwdreinit(void);
-void fwdmark(void);
-void fwdnext(void);
+void fwdinit();
+void fwdreinit();
+void fwdmark();
+void fwdnext();
 
 #endif // FFWD_H

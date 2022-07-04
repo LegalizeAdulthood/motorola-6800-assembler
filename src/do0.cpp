@@ -19,7 +19,7 @@ static void do_gen(int op, int mode);
 /*
  *	localinit --- machine specific initialization
  */
-void localinit(void) {}
+void localinit() {}
 
 /*
  *	do_op --- process mnemonic

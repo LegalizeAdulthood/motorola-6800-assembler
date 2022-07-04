@@ -20,7 +20,7 @@ static void do_gen(int op, int mode);
 /*
  *      localinit --- machine specific initialization
  */
-void localinit(void) {}
+void localinit() {}
 
 static int check_opcode(const char *mnemonic, int cpuOpcode, int opcode,
                         CpuType requiredCpu)

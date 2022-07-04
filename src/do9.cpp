@@ -40,14 +40,14 @@ int rcycl[] = {2, 2, 2, 2, 2, 2, 0, 0, 1, 1, 1, 1, 0};
 static void do_indexed(int op);
 static void abd_index(int pbyte);
 static int rtype(int r);
-static int set_mode(void);
-static int regnum(void);
+static int set_mode();
+static int regnum();
 static void do_gen(int op, int mode);
 
 /*
  *      localinit --- machine specific initialization
  */
-void localinit(void) {}
+void localinit() {}
 
 /*
  *      do_op --- process mnemonic
@@ -625,7 +625,7 @@ static int rtype(int r)
 /*
  *      set_mode --- determine addressing mode from operand field
  */
-static int set_mode(void)
+static int set_mode()
 {
     register char *p;
 
@@ -646,7 +646,7 @@ static int set_mode(void)
 /*
  *      regnum --- return register number of *Optr
  */
-static int regnum(void)
+static int regnum()
 {
     if (head(Optr, "D"))
         return (RD);

@@ -33,7 +33,7 @@ char Fwd_name[] = {"Fwd_refs"};
 /*
  *      fwdinit --- initialize forward ref file
  */
-void fwdinit(void)
+void fwdinit()
 {
     Forward = creat(Fwd_name, FILEMODE);
     if (Forward < 0)
@@ -50,7 +50,7 @@ void fwdinit(void)
 /*
  *      fwdreinit --- reinitialize forward ref file
  */
-void fwdreinit(void)
+void fwdreinit()
 {
     F_ref = 0;
     Ffn = 0;
@@ -65,7 +65,7 @@ void fwdreinit(void)
 /*
  *      fwdmark --- mark current file/line as containing a forward ref
  */
-void fwdmark(void)
+void fwdmark()
 {
     write(Forward, &Cfn, sizeof(Cfn));
     write(Forward, &Line_num, sizeof(Line_num));
@@ -74,7 +74,7 @@ void fwdmark(void)
 /*
  *      fwdnext --- get next forward ref
  */
-void fwdnext(void)
+void fwdnext()
 {
     int stat;
 

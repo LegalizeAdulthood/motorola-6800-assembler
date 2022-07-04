@@ -30,7 +30,7 @@ int yflag = 0; /* YNOIMM, YLIMM, and CPD flag */
 /*
  *      localinit --- machine specific initialization
  */
-void localinit(void) {}
+void localinit() {}
 
 /*
  *      do_op --- process mnemonic

@@ -95,7 +95,7 @@ int emit(int byte)
 /*
  *      f_record --- flush record out in `S1' format
  */
-void f_record(void)
+void f_record()
 {
     int i;
     int chksum;
@@ -139,7 +139,7 @@ void hexout(int byte)
 /*
  *      print_line --- pretty print input line
  */
-void print_line(void)
+void print_line()
 {
     int i;
     register char *ptr;

@@ -25,7 +25,7 @@ static void mvi(int op, int to, int from);
 /*
  *      localinit --- machine specific initialization
  */
-void localinit(void)
+void localinit()
 {
     install("x", XREG);
     install("X", XREG);

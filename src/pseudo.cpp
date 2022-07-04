@@ -35,7 +35,7 @@ struct oper pseudo[] = {
 
 CpuType cpuType = CPU_UNKNOWN;
 
-int sizeof_pseudo(void) { return sizeof(pseudo); }
+int sizeof_pseudo() { return sizeof(pseudo); }
 
 /*
  *      do_pseudo --- do pseudo op processing

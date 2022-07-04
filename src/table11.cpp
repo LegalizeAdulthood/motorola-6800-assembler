@@ -114,4 +114,4 @@ struct oper table[] = {
     "xgdy",  P2INH,   0x8F,    4 /* 6811 */
 };
 
-int sizeof_table(void) { return sizeof(table); }
+int sizeof_table() { return sizeof(table); }

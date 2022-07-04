@@ -5,6 +5,6 @@
 
 extern struct oper table[];
 
-int sizeof_table(void);
+int sizeof_table();
 
 #endif // TABLE_H

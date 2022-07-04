@@ -96,4 +96,4 @@ struct oper table[] = {
     {"wait", INH | VARIANT, 0x8F, 2} /* CMOS only */
 };
 
-int sizeof_table(void) { return sizeof(table); }
+int sizeof_table() { return sizeof(table); }

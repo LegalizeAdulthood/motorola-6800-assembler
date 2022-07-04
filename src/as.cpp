@@ -13,11 +13,11 @@
 #include "symtab.h"
 #include "util.h"
 
-void initialize(void);
-void make_pass(void);
-void re_init(void);
-void process(void);
-int parse_line(void);
+void initialize();
+void make_pass();
+void re_init();
+void process();
+int parse_line();
 
 /*
         as ---	cross assembler main program
@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
     exit(Err_count);
 }
 
-void initialize(void)
+void initialize()
 {
     int i = 0;
 
@@ -135,7 +135,7 @@ void initialize(void)
     localinit(); /* target machine specific init. */
 }
 
-void re_init(void)
+void re_init()
 {
 #ifdef DEBUG
     printf("Reinitializing\n");
@@ -148,7 +148,7 @@ void re_init(void)
     fwdreinit();
 }
 
-void make_pass(void)
+void make_pass()
 {
 #ifdef DEBUG
     printf("Pass %d\n", Pass);
@@ -171,7 +171,7 @@ void make_pass(void)
 /*
  *	parse_line --- split input line into label, op and operand
  */
-int parse_line(void)
+int parse_line()
 {
     register char *ptrfrm = Line;
     register char *ptrto = Label;
@@ -210,7 +210,7 @@ int parse_line(void)
 /*
  *	process --- determine mnemonic class and act on it
  */
-void process(void)
+void process()
 {
     register struct oper *i;
 

@@ -69,4 +69,4 @@ struct oper table[] = {
     "tsx",  INH,     48,   3,  "txs",  INH,     53,  3,
     "wai",  INH,     62,   9};
 
-int sizeof_table(void) { return sizeof(table); }
+int sizeof_table() { return sizeof(table); }
