@@ -54,7 +54,6 @@ void do_pseudo(int op /* which op */)
         char    fccdelim;
         int     j;
         int     fill;
-        char    *skip_white();
 
         if( op != EQU && *Label )
                 install(Label,Pc);

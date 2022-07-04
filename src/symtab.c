@@ -18,7 +18,6 @@ int install(char *str, int val)
 {
         struct link *lp;
 	struct nlist *np,*p,*backp;
-	struct nlist *lookup();
 	int     i;
 
 	if( !alpha(*str) ){

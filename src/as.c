@@ -26,7 +26,6 @@ int main(int argc, char *argv[])
 {
 	char	**np;
 	char	*i;
-	FILE	*fopen();
 	int	j = 0;
 
 	if(argc < 2){
@@ -105,7 +104,6 @@ int main(int argc, char *argv[])
 
 void initialize(void)
 {
-	FILE	*fopen();
 	int	i = 0;
 
 #ifdef DEBUG
@@ -150,8 +148,6 @@ void re_init(void)
 
 void make_pass(void)
 {
-	char	*fgets();
-
 #ifdef DEBUG
 	printf("Pass %d\n",Pass);
 #endif
@@ -177,7 +173,6 @@ int parse_line(void)
 {
 	register char *ptrfrm = Line;
 	register char *ptrto = Label;
-	char	*skip_white();
 
 	if( *ptrfrm == '*' || *ptrfrm == '\n' )
 		return(0);	/* a comment line */
@@ -215,7 +210,6 @@ int parse_line(void)
 void process(void)
 {
 	register struct oper *i;
-	struct oper *mne_look();
 
 	Old_pc = Pc;		/* setup `old' program counter */
 	Optr = Operand; 	/* point to beginning of operand field */
