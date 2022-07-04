@@ -1,13 +1,9 @@
-
-
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-extern char *Optr;
 extern int Line_num;   /* current line number          */
 extern int Err_count;  /* total number of errors       */
 extern char Line[];    /* input line buffer            */
@@ -52,14 +48,13 @@ extern int CREflag;  /* cross reference table flag */
 extern struct nlist *root; /* root node of the tree */
 
 extern FILE *Objfil; /* object file's file descriptor*/
-extern char *Obj_name;
 
-typedef enum
+enum CpuType
 {
     CPU_UNKNOWN = 0, /* CPU not specified */
     CPU_M6805,       /* enables CMOS instructions STOP, WAIT */
     CPU_HC05C4,      /* enables MUL instruction */
-} CpuType;
+};
 extern CpuType cpuType; /* result of CPU pseudo-op */
 
 #endif // GLOBALS_H
