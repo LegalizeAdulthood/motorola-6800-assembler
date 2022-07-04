@@ -20,7 +20,7 @@ should not be a problem.
 
 ## Building
 
-The code uses [CMake](https://cmake.org) and has no extdernal dependencies,
+The code uses [CMake](https://cmake.org) and has no external dependencies,
 so building the code is a simple matter of configuring with CMake and then
 using your generated build scripts, e.g. with make:
 ```
@@ -61,8 +61,8 @@ value of the argument can be:
 
 | Argument | Meaning |
 | -------- | ------- |
-| cmos     | CMOS 6805 supporting STOP and WAIT instructions |
-| hc05c4   | HC05C4 6805 supporting MUL instruction |
+| `cmos`   | CMOS 6805 supporting `STOP` and `WAIT` instructions |
+| `hc05c4` | HC05C4 6805 supporting `MUL` instruction |
 
 ## Testing Your Binary
 
