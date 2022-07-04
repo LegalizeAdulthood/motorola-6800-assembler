@@ -9,4 +9,3 @@ extern struct oper table[];
 int sizeof_table(void);
 
 #endif // _TABLE_H_
-

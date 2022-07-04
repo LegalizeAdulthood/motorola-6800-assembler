@@ -24,4 +24,3 @@ int white(char c);
 char *alloc(int nbytes);
 
 #endif // _UTIL_H_
-

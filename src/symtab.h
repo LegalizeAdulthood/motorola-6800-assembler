@@ -10,4 +10,3 @@ struct nlist *lookup(char *name);
 struct oper *mne_look(char *str);
 
 #endif // _SYMTAB_H_
-

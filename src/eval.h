@@ -10,4 +10,3 @@ int is_op(char c);
 int get_term(void);
 
 #endif // _EVAL_H_
-

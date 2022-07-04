@@ -37,52 +37,72 @@
  */
 
 #include "eval.h"
-#include "globals.h"
 #include "as.h"
-#include "util.h"
 #include "ffwd.h"
+#include "globals.h"
+#include "util.h"
 
 int eval(void)
 {
-        int     left,right;     /* left and right terms for expression */
-        char    o;              /* operator character */
+    int left, right; /* left and right terms for expression */
+    char o;          /* operator character */
 
 #ifdef DEBUG
-        printf("Evaluating %s\n",Optr);
+    printf("Evaluating %s\n", Optr);
 #endif
-        Force_byte = NO;
-        Force_word = NO;
-        if(*Optr=='<'){
-                Force_byte++;
-                Optr++;
-                }
-        else if(*Optr=='>'){
-                Force_word++;
-                Optr++;
-                }
-        left = get_term();         /* pickup first part of expression */
+    Force_byte = NO;
+    Force_word = NO;
+    if (*Optr == '<')
+    {
+        Force_byte++;
+        Optr++;
+    }
+    else if (*Optr == '>')
+    {
+        Force_word++;
+        Optr++;
+    }
+    left = get_term(); /* pickup first part of expression */
 
-        while( is_op(*Optr)){
-                o = *Optr++; /* pickup connector and skip */
-                right = get_term();     /* pickup current rightmost side */
-                switch(o){
-                        case '+': left += right; break;
-                        case '-': left -= right; break;
-                        case '*': left *= right; break;
-                        case '/': left /= right; break;
-                        case '|': left |= right; break;
-                        case '&': left &= right; break;
-                        case '%': left %= right; break;
-                        case '^': left = left^right; break;
-                        }
-                }
+    while (is_op(*Optr))
+    {
+        o = *Optr++;        /* pickup connector and skip */
+        right = get_term(); /* pickup current rightmost side */
+        switch (o)
+        {
+        case '+':
+            left += right;
+            break;
+        case '-':
+            left -= right;
+            break;
+        case '*':
+            left *= right;
+            break;
+        case '/':
+            left /= right;
+            break;
+        case '|':
+            left |= right;
+            break;
+        case '&':
+            left &= right;
+            break;
+        case '%':
+            left %= right;
+            break;
+        case '^':
+            left = left ^ right;
+            break;
+        }
+    }
 
-        Result= left;
+    Result = left;
 #ifdef DEBUG
-        printf("Result=%x\n",Result);
-        printf("Force_byte=%d  Force_word=%d\n",Force_byte,Force_word);
+    printf("Result=%x\n", Result);
+    printf("Force_byte=%d  Force_word=%d\n", Force_byte, Force_word);
 #endif
-        return(YES);
+    return (YES);
 }
 
 /*
@@ -90,115 +110,126 @@ int eval(void)
  */
 int is_op(char c)
 {
-        if( any(c,"+-*/&%|^"))
-                return(YES);
-        return(NO);
+    if (any(c, "+-*/&%|^"))
+        return (YES);
+    return (NO);
 }
-
 
 /*
  *      get_term --- evaluate a single item in an expression
  */
 int get_term(void)
 {
-        char    hold[MAXBUF];
-        char    *tmp;
-        int     val = 0;        /* local value being built */
-        int     minus;          /* unary minus flag */
-        struct nlist *lookup(),*pointer;
-        struct link *pnt,*bpnt;
+    char hold[MAXBUF];
+    char *tmp;
+    int val = 0; /* local value being built */
+    int minus;   /* unary minus flag */
+    struct nlist *lookup(), *pointer;
+    struct link *pnt, *bpnt;
 
-        if( *Optr == '-' ){
-                Optr++;
-                minus =YES;
-                }
+    if (*Optr == '-')
+    {
+        Optr++;
+        minus = YES;
+    }
+    else
+        minus = NO;
+
+    while (*Optr == '#')
+        Optr++;
+
+    /* look at rest of expression */
+
+    if (*Optr == '%')
+    { /* binary constant */
+        Optr++;
+        while (any(*Optr, "01"))
+            val = (val * 2) + ((*Optr++) - '0');
+    }
+    else if (*Optr == '@')
+    { /* octal constant */
+        Optr++;
+        while (any(*Optr, "01234567"))
+            val = (val * 8) + ((*Optr++) - '0');
+    }
+    else if (*Optr == '$')
+    { /* hex constant */
+        Optr++;
+        while (any(*Optr, "0123456789abcdefABCDEF"))
+            if (*Optr > '9')
+                val = (val * 16) + 10 + (mapdn(*Optr++) - 'a');
+            else
+                val = (val * 16) + ((*Optr++) - '0');
+    }
+    else if (any(*Optr, "0123456789"))
+    { /* decimal constant */
+        while (*Optr >= '0' && *Optr <= '9')
+            val = (val * 10) + ((*Optr++) - '0');
+    }
+    else if (*Optr == '*')
+    { /* current location counter */
+        Optr++;
+        val = Old_pc;
+    }
+    else if (*Optr == '\'')
+    { /* character literal */
+        Optr++;
+        if (*Optr == EOS)
+            val = 0;
         else
-                minus = NO;
-
-        while( *Optr == '#' ) Optr++;
-
-        /* look at rest of expression */
-
-        if(*Optr=='%'){ /* binary constant */
-                Optr++;
-                while( any(*Optr,"01"))
-                        val = (val * 2) + ( (*Optr++)-'0');
+            val = *Optr++;
+    }
+    else if (alpha(*Optr))
+    {               /* a symbol */
+        tmp = hold; /* collect symbol name */
+        while (alphan(*Optr))
+            *tmp++ = *Optr++;
+        *tmp = EOS;
+        pointer = lookup(hold);
+        if (pointer != NULL)
+        {
+            if (Pass == 2)
+            {
+                pnt = pointer->L_list;
+                bpnt = NULL;
+                while (pnt != NULL)
+                {
+                    bpnt = pnt;
+                    pnt = pnt->next;
                 }
-        else if(*Optr=='@'){ /* octal constant */
-                Optr++;
-                while( any(*Optr,"01234567"))
-                        val = (val * 8) + ((*Optr++)-'0');
-                }
-        else if(*Optr=='$'){ /* hex constant */
-                Optr++;
-                while( any(*Optr,"0123456789abcdefABCDEF"))
-                        if( *Optr > '9' )
-                                val = (val * 16) + 10 + (mapdn(*Optr++)-'a');
-                        else
-                                val = (val * 16) + ((*Optr++)-'0');
-                }
-        else if( any(*Optr,"0123456789")){ /* decimal constant */
-                while(*Optr >= '0' && *Optr <= '9')
-                        val = (val * 10) + ( (*Optr++)-'0');
-                }
-        else if(*Optr=='*'){    /* current location counter */
-                Optr++;
-                val = Old_pc;
-                }
-        else if(*Optr=='\''){   /* character literal */
-                Optr++;
-                if(*Optr == EOS)
-                        val = 0;
+                pnt = (struct link *)alloc(sizeof(struct link));
+                if (bpnt == NULL)
+                    pointer->L_list = pnt;
                 else
-                        val = *Optr++;
-                }
-        else if( alpha(*Optr) ){ /* a symbol */
-                tmp = hold;     /* collect symbol name */
-                while(alphan(*Optr))
-                        *tmp++ = *Optr++;
-                *tmp = EOS;
-                pointer = lookup(hold);
-                  if (pointer != NULL)
-                   {
-                   if (Pass == 2)
-                    {
-                       pnt = pointer->L_list;
-                        bpnt = NULL;
-                        while (pnt != NULL)
-                         {
-                           bpnt = pnt;
-                           pnt = pnt->next;
-                         }
-                        pnt = (struct link *) alloc(sizeof(struct link));
-                      if (bpnt == NULL)
-                       pointer->L_list = pnt;
-                      else bpnt->next = pnt;
-                     pnt->L_num = Line_num;
-                    pnt->next = NULL;
-                    }
-                       val = Last_sym;
-                   }
-                else{
-                        if(Pass==1){    /* forward ref here */
-                                fwdmark();
-                                if( !Force_byte )
-                                        Force_word++;
-                                val = 0;
-                                }
-                        }
-                if(Pass==2 && Line_num==F_ref && Cfn==Ffn){
-                        if( !Force_byte  )
-                                Force_word++;
-                        fwdnext();
-                        }
-                }
+                    bpnt->next = pnt;
+                pnt->L_num = Line_num;
+                pnt->next = NULL;
+            }
+            val = Last_sym;
+        }
         else
-                /* none of the above */
+        {
+            if (Pass == 1)
+            { /* forward ref here */
+                fwdmark();
+                if (!Force_byte)
+                    Force_word++;
                 val = 0;
+            }
+        }
+        if (Pass == 2 && Line_num == F_ref && Cfn == Ffn)
+        {
+            if (!Force_byte)
+                Force_word++;
+            fwdnext();
+        }
+    }
+    else
+        /* none of the above */
+        val = 0;
 
-        if(minus)
-                return(-val);
-        else
-                return(val);
+    if (minus)
+        return (-val);
+    else
+        return (val);
 }
-
