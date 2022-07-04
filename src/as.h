@@ -78,7 +78,7 @@ struct nlist
 struct oper
 {                   /* an entry in the mnemonic table */
     char *mnemonic; /* its name */
-    char class;     /* its class */
+    char opClass;   /* its class */
     int opcode;     /* its base opcode */
     char cycles;    /* its base # of cycles */
 };

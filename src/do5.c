@@ -53,7 +53,7 @@ static int check_opcode(const char *mnemonic, int cpuOpcode, int opcode,
  *	Called with the base opcode and it's class. Optr points to
  *	the beginning of the operand field.
  */
-void do_op(int opcode /* base opcode */, int class /* mnemonic class */)
+void do_op(int opcode /* base opcode */, int opClass /* mnemonic class */)
 {
     int dist;  /* relative branch distance */
     int amode; /* indicated addressing mode */
@@ -71,9 +71,9 @@ void do_op(int opcode /* base opcode */, int class /* mnemonic class */)
     if (*Optr == '#')
         amode = IMMED;
 
-    if (class & VARIANT)
+    if (opClass & VARIANT)
     {
-        class &= ~VARIANT;
+        opClass &= ~VARIANT;
         if (check_opcode("mul", 0x42, opcode, CPU_HC05C4) ||
             check_opcode("stop", 0x8E, opcode, CPU_M6805) ||
             check_opcode("wait", 0x8F, opcode, CPU_M6805))
@@ -82,7 +82,7 @@ void do_op(int opcode /* base opcode */, int class /* mnemonic class */)
         }
     }
 
-    switch (class)
+    switch (opClass)
     {
     case INH: /* inherent addressing */
         emit(opcode);
@@ -145,7 +145,7 @@ void do_op(int opcode /* base opcode */, int class /* mnemonic class */)
             error("SYNTAX");
         eval();
         emit(lobyte(Result));
-        if (class == SETCLR)
+        if (opClass == SETCLR)
             return;
         /* else it's bit test and branch */
         if (*Optr++ != ',')

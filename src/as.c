@@ -235,7 +235,7 @@ void process(void)
         sprintf(msg, "Unrecognized Mnemonic '%s'", Op);
         error(msg);
     }
-    else if (i->class == PSEUDO)
+    else if (i->opClass == PSEUDO)
         do_pseudo(i->opcode);
     else
     {
@@ -243,7 +243,7 @@ void process(void)
             install(Label, Pc);
         if (Cflag)
             Cycles = i->cycles;
-        do_op(i->opcode, i->class);
+        do_op(i->opcode, i->opClass);
         if (Cflag)
             Ctotal += Cycles;
     }

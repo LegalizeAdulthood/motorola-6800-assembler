@@ -20,7 +20,7 @@
 #define LIMMED 3 /* long immediate */
 #define OTHER  4
 
-static int bitop(int op, int mode, int class);
+static int bitop(int op, int mode, int opClass);
 static void do_gen(int op, int mode, int pnorm, int px, int py);
 static void do_indexed(int op);
 static void epage(int p);
@@ -38,7 +38,7 @@ void localinit(void) {}
  *	Called with the base opcode and it's class. Optr points to
  *	the beginning of the operand field.
  */
-void do_op(int opcode /* base opcode */, int class /* mnemonic class */)
+void do_op(int opcode /* base opcode */, int opClass /* mnemonic class */)
 {
     int dist;  /* relative branch distance */
     int amode; /* indicated addressing mode */
@@ -60,7 +60,7 @@ void do_op(int opcode /* base opcode */, int class /* mnemonic class */)
         amode = IMMED;
 
     yflag = 0;
-    switch (class)
+    switch (opClass)
     {
     case P2INH:
         emit(PAGE2);
@@ -140,7 +140,7 @@ void do_op(int opcode /* base opcode */, int class /* mnemonic class */)
         return;
     case BTB:    /* bset, bclr */
     case SETCLR: /* brset, brclr */
-        opcode = bitop(opcode, amode, class);
+        opcode = bitop(opcode, amode, opClass);
 
         if (amode == INDX)
             Cycles++;
@@ -158,7 +158,7 @@ void do_op(int opcode /* base opcode */, int class /* mnemonic class */)
         Optr = skip_white(Optr);
         eval();
         emit(lobyte(Result)); /* mask */
-        if (class == SETCLR)
+        if (opClass == SETCLR)
             return;
         Optr = skip_white(Optr);
         eval();
@@ -178,13 +178,13 @@ void do_op(int opcode /* base opcode */, int class /* mnemonic class */)
 /*
  *      bitop --- adjust opcode on bit manipulation instructions
  */
-static int bitop(int op, int mode, int class)
+static int bitop(int op, int mode, int opClass)
 {
     if (mode == INDX || mode == INDY)
         return (op);
-    if (class == SETCLR)
+    if (opClass == SETCLR)
         return (op - 8);
-    else if (class == BTB)
+    else if (opClass == BTB)
         return (op - 12);
     else
         fatal("bitop");

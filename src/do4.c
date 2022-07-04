@@ -38,7 +38,7 @@ void localinit(void)
 /*
  *      do_op --- process mnemonic
  */
-void do_op(int opcode /* base opcode */, int class /* mnemonic class */)
+void do_op(int opcode /* base opcode */, int opClass /* mnemonic class */)
 {
     int dist;  /* relative branch distance */
     int amode; /* indicated addressing mode */
@@ -51,7 +51,7 @@ void do_op(int opcode /* base opcode */, int class /* mnemonic class */)
     else
         amode = OTHER;
 
-    switch (class)
+    switch (opClass)
     {
     case INH: /* inherent addressing */
         emit(opcode);
@@ -83,7 +83,7 @@ void do_op(int opcode /* base opcode */, int class /* mnemonic class */)
             error("SYNTAX");
         eval();
         emit(lobyte(Result));
-        if (class == SETCLR)
+        if (opClass == SETCLR)
             return;
         if (*Optr++ != ',')
             error("SYNTAX");

@@ -27,7 +27,7 @@ void localinit(void) {}
  *	Called with the base opcode and it's class. Optr points to
  *	the beginning of the operand field.
  */
-void do_op(int opcode /* base opcode */, int class /* mnemonic class */)
+void do_op(int opcode /* base opcode */, int opClass /* mnemonic class */)
 {
     int dist;  /* relative branch distance */
     int amode; /* indicated addressing mode */
@@ -45,7 +45,7 @@ void do_op(int opcode /* base opcode */, int class /* mnemonic class */)
     if (*Optr == '#')
         amode = IMMED;
 
-    switch (class)
+    switch (opClass)
     {
     case INH: /* inherent addressing */
         emit(opcode);
