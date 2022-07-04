@@ -1,12 +1,27 @@
 # Motorola 6800 Assembler
 
-This repository contains the source code to build the Motorola Cross Assemblers for their 6800 family of 8bit processors.  This code was originally published in 1984 and then ported to the IBM PC and republished in 1987.  I want to give full credit to those who developed this code and my full respect for their work.
+This repository contains the source code to build the Motorola Cross
+Assemblers for their 6800 family of 8bit processors.  This code was
+originally published in 1984 and then ported to the IBM PC and republished
+in 1987.  I want to give full credit to those who developed this code and
+my full respect for their work.
 
-My intent is to keep the source code as close to the original as possible.  The original source code was written in pre-ANSI C, so it required some editing to bring it up to the ANSI C standard.  It was also designed to have one main c file where you had to comment in and out the correct *.h and *.c files to build the assemblers for the different microprocessors in the 6800 family.  I updated this to build each module into its own object file and then directed the linker to include the appropriate object files for the different assemblers for the various microprocessors.  I also added a directory structure where the source code is kept in the ./src directory, object files are placed in the ./obj directory, and binary files are placed in the ./bin directory.
+My intent is to keep the source code as close to the original as possible.
+The original source code was written in pre-ANSI C, so it required some
+editing to bring it up to the ANSI C standard.  It was also designed to
+have one main c file where you had to comment in and out the correct *.h
+and *.c files to build the assemblers for the different microprocessors in
+the 6800 family.  I updated this to build each module into its own object
+file and then directed the linker to include the appropriate object files
+for the different assemblers for the various microprocessors.  I also added
+a directory structure where the source code is kept in the ./src directory,
+object files are placed in the ./obj directory, and binary files are placed
+in the ./bin directory.
 
 The code can be built using the gcc compiler on Windows, Linux, and MacOS.
 
-This module will build the following binaries for the specified Motorola microprocessors:
+This module will build the following binaries for the specified Motorola
+microprocessors:
 
 ```
 ./bin/as0   6800/6802 processors
@@ -19,12 +34,14 @@ This module will build the following binaries for the specified Motorola micropr
 
 ## Compiling The Source Code
 
-All you need to do to compile the assemblers is to go to the main directly for this repository and run make as in the example below.
+All you need to do to compile the assemblers is to go to the main directly
+for this repository and run make as in the example below.
 ```
 cd /<path>/motorola-6800-assembler
 make all
 ```
-You can also build individual assemblers with statements similar to the following:
+You can also build individual assemblers with statements similar to the
+following:
 ```
 make as0
 ```
@@ -34,19 +51,28 @@ You can enter the following command to remove all derived objects:
 ```
 make clean
 ```
-And you can remove all derived objects, binaries, and added directories with the following command:
+And you can remove all derived objects, binaries, and added directories with
+the following command:
 ```
 make realclean
 ```
 
 ## Testing Your Binary
 
-I've included a few programs written using the Motorola 6800 syntax.  The programs are examples from the [MEK6802D5 Microcomputer Evaluation Board User's Manual](https://github.com/JimInCA/cassette-tape-emulator/blob/main/doc/mek6802d5.pdf).  The code is almost identical to the code in the book with the exception of the opt pre-assembler directive and the addition of a few comments of mine.  These programs are included in the ./test directory and can be used to verify the functionality of the assembler binaries.  A simple procedure follows that you can use to test the assemblers:
+I've included a few programs written using the Motorola 6800 syntax.  The
+programs are examples from the
+[MEK6802D5 Microcomputer Evaluation Board User's Manual](https://github.com/JimInCA/cassette-tape-emulator/blob/main/doc/mek6802d5.pdf).
+The code is almost identical to the code in the book with the exception of
+the opt pre-assembler directive and the addition of a few comments of mine.
+These programs are included in the ./test directory and can be used to verify
+the functionality of the assembler binaries.  A simple procedure follows that
+you can use to test the assemblers:
 ```
 cd ./test
 ../bin/as0 used5.asm -l cre c s
 ```
-Using the above command, the output to the terminal window from the as0 assembler should look like this:
+Using the above command, the output to the terminal window from the as0
+assembler should look like this:
 ```
 <system>:~/motorola-6800-assembler/test$ ../bin/as0 used5.asm -l cre c s
 0001                               *
@@ -96,7 +122,9 @@ mnptr      e419 *0015 0031
 put        f0bb *0016 0032 
 ```
 
-The as0 assembler produces the S-recored output file used5.s19.  This file is saved to the ./test directory.  A listing of the test directory should look like this:
+The as0 assembler produces the S-recored output file used5.s19.  This file is
+saved to the ./test directory.  A listing of the test directory should look
+like this:
 
 ```
 <system>:~/motorola-6800-assembler/test$ ls -al
@@ -108,13 +136,18 @@ drwxrwxr-x 8 jim jim 4096 May 29 07:53 ..
 -rw-rw-r-- 1 jim jim  109 May 29 07:53 used5.s19
 ```
 
-The first example, used5.asm, was written using only lower case characters and no tabs.  As a further test of the assembler, test case help.asm was written using only upper case characters along with tabs to set the spacing between the label, operator, operand, and comment fields.  You can assemble help.asm with the following command:
+The first example, used5.asm, was written using only lower case characters
+and no tabs.  As a further test of the assembler, test case help.asm was
+written using only upper case characters along with tabs to set the spacing
+between the label, operator, operand, and comment fields.  You can assemble
+help.asm with the following command:
 
 ```
 ../bin/as0 help.asm -L CRE C S
 ```
 
-This will produce the following output to the terminal window along with the help.s19 file being written to the ./test directory:
+This will produce the following output to the terminal window along with the
+help.s19 file being written to the ./test directory:
 
 ```
 <system>:~/motorola-6800-assembler/test$ ../bin/as0 help.asm -L CRE C S
@@ -163,7 +196,13 @@ PUT        f0bb *0018 0029
 
 ## Documentation
 
-I've included two files in the ./documentation directory.  File `assembler.txt` is the original documentation included with the sources for the assemblers.  The other file, `motorola_cross_asm_manual.pdf` is a manual for the Motorola assemblers that was published in 1990.  The information in this second file is not absolutely consistent with the assemblers used here, but it seems to be close and is a much more complete document than the text file.  So use at your own discretion.
+I've included two files in the ./documentation directory.  File
+`assembler.txt` is the original documentation included with the sources for
+the assemblers.  The other file, `motorola_cross_asm_manual.pdf` is a manual
+for the Motorola assemblers that was published in 1990.  The information in
+this second file is not absolutely consistent with the assemblers used here,
+but it seems to be close and is a much more complete document than the text
+file.  So use at your own discretion.
 
 That's it for now...
 
