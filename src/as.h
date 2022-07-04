@@ -76,10 +76,10 @@ struct nlist
 };
 
 struct oper
-{                   /* an entry in the mnemonic table */
-    char *mnemonic; /* its name */
-    char opClass;   /* its class */
-    int opcode;     /* its base opcode */
-    char cycles;    /* its base # of cycles */
+{                         /* an entry in the mnemonic table */
+    const char *mnemonic; /* its name */
+    char opClass;         /* its class */
+    int opcode;           /* its base opcode */
+    char cycles;          /* its base # of cycles */
 };
 #endif // AS_H

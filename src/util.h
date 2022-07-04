@@ -1,9 +1,9 @@
 #ifndef UTIL_H
 #define UTIL_H
 
-void fatal(char *str);
-void error(char *str);
-void warn(char *str);
+void fatal(const char *str);
+void error(const char *str);
+void warn(const char *str);
 int delim(char c);
 char *skip_white(char *ptr);
 void eword(int wd);

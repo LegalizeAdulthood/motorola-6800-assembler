@@ -10,7 +10,7 @@
 /*
  *      fatal --- fatal error handler
  */
-void fatal(char *str)
+void fatal(const char *str)
 {
     printf("%s\n", str);
     exit(-1);
@@ -20,7 +20,7 @@ void fatal(char *str)
  *      error --- error in a line
  *                      print line number and error
  */
-void error(char *str)
+void error(const char *str)
 {
     if (N_files > 1)
         printf("%s,", Argv[Cfn]);
@@ -33,7 +33,7 @@ void error(char *str)
  *      warn --- trivial error in a line
  *                      print line number and error
  */
-void warn(char *str)
+void warn(const char *str)
 {
     if (N_files > 1)
         printf("%s,", Argv[Cfn]);
@@ -269,4 +269,4 @@ int white(char c)
 /*
  *	alloc --- allocate memory
  */
-char *alloc(int nbytes) { return (malloc(nbytes)); }
+char *alloc(int nbytes) { return static_cast<char *>(malloc(nbytes)); }

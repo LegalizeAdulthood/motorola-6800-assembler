@@ -40,6 +40,7 @@
 #include "as.h"
 #include "ffwd.h"
 #include "globals.h"
+#include "symtab.h"
 #include "util.h"
 
 int eval(void)
@@ -124,7 +125,7 @@ int get_term(void)
     char *tmp;
     int val = 0; /* local value being built */
     int minus;   /* unary minus flag */
-    struct nlist *lookup(), *pointer;
+    struct nlist *pointer;
     struct link *pnt, *bpnt;
 
     if (*Optr == '-')
