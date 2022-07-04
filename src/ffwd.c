@@ -9,6 +9,7 @@
 #endif
 #if HAVE_IO_H
 #include <io.h>
+#include <sys/stat.h>
 #endif
 #include <fcntl.h>
 
@@ -16,7 +17,13 @@
 #include "globals.h"
 #include "util.h"
 
+#if HAVE_UNISTD_H
 #define	FILEMODE	0644	/* file creat mode */
+#else
+#if HAVE_IO_H
+#define FILEMODE (S_IREAD | S_IWRITE)
+#endif
+#endif
 #define	UPDATE		2	/* file open mode */
 #define	ABS		0	/* absolute seek */
 
