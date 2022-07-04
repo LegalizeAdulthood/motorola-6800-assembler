@@ -1,6 +1,6 @@
 include(CheckIncludeFile)
-check_include_file(<unistd.h> HAVE_UNISTD_H)
-check_include_file(<io.h> HAVE_IO_H)
+check_include_file(unistd.h HAVE_UNISTD_H)
+check_include_file(io.h HAVE_IO_H)
 configure_file(config.h.in config.h)
 
 add_library(asm
@@ -22,6 +22,7 @@ add_library(asm
 	table.h
 	util.c
 	util.h
+	${CMAKE_CURRENT_BINARY_DIR}/config.h
 )
 target_include_directories(asm PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 

@@ -2,7 +2,7 @@
  *      file I/O version of forward ref handler
  */
 
-#include <config.h>
+#include "config.h"
 
 #if HAVE_UNISTD_H
 #include <unistd.h>
