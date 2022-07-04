@@ -225,7 +225,11 @@ void process(void)
 			install(Label,Pc);
 		}
 	else if( (i = mne_look(Op))== NULL)
-		error("Unrecognized Mnemonic");
+	{
+		char msg[80];
+		sprintf(msg, "Unrecognized Mnemonic '%s'", Op);
+		error(msg);
+	}
 	else if( i->class == PSEUDO )
 		do_pseudo(i->opcode);
 	else{
