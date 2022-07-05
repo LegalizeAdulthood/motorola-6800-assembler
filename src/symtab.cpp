@@ -1,4 +1,4 @@
-
+#include <string>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -108,7 +108,7 @@ struct nlist *lookup(const char *name)
     }
     Last_sym = 0;
     if (Pass == 2)
-        error("symbol Undefined on pass 2");
+        error((std::string{"symbol '"} + name + "' Undefined on pass 2").c_str());
     return (NULL);
 }
 
