@@ -8,7 +8,7 @@ char Line[MAXBUF] = {0};    /* input line buffer            */
 char Label[MAXLAB] = {0};   /* label on current line        */
 char Op[MAXOP] = {0};       /* opcode mnemonic on current line      */
 char Operand[MAXBUF] = {0}; /* remainder of line after op           */
-char *Optr = 0;             /* pointer into current Operand field   */
+char *Optr = nullptr;             /* pointer into current Operand field   */
 int Result = 0;             /* result of expression evaluation      */
 int Force_word = 0;         /* Result should be a word when set     */
 int Force_byte = 0;         /* Result should be a byte when set     */
@@ -19,11 +19,11 @@ int Last_sym = 0; /* result of last lookup        */
 
 int Pass = 0;    /* Current pass #               */
 int N_files = 0; /* Number of files to assemble  */
-FILE *Fd = 0;    /* Current input file structure */
+FILE *Fd = nullptr;    /* Current input file structure */
 int Cfn = 0;     /* Current file number 1...n    */
 int Ffn = 0;     /* forward ref file #           */
 int F_ref = 0;   /* next line with forward ref   */
-char **Argv = 0; /* pointer to file names        */
+char **Argv = nullptr; /* pointer to file names        */
 
 int E_total = 0;            /* total # bytes for one line   */
 int E_bytes[E_LIMIT] = {0}; /* Emitted held bytes           */
@@ -45,4 +45,4 @@ int CREflag = 0;  /* cross reference table flag */
 
 struct nlist *root; /* root node of the tree */
 
-FILE *Objfil = 0; /* object file's file descriptor*/
+FILE *Objfil = nullptr; /* object file's file descriptor*/

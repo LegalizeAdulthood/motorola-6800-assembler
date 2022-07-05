@@ -187,24 +187,24 @@ int get_term()
             *tmp++ = *Optr++;
         *tmp = EOS;
         pointer = lookup(hold);
-        if (pointer != NULL)
+        if (pointer != nullptr)
         {
             if (Pass == 2)
             {
                 pnt = pointer->L_list;
-                bpnt = NULL;
-                while (pnt != NULL)
+                bpnt = nullptr;
+                while (pnt != nullptr)
                 {
                     bpnt = pnt;
                     pnt = pnt->next;
                 }
                 pnt = (struct link *)alloc(sizeof(struct link));
-                if (bpnt == NULL)
+                if (bpnt == nullptr)
                     pointer->L_list = pnt;
                 else
                     bpnt->next = pnt;
                 pnt->L_num = Line_num;
-                pnt->next = NULL;
+                pnt->next = nullptr;
             }
             val = Last_sym;
         }

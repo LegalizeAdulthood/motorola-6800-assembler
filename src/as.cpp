@@ -72,13 +72,13 @@ int main(int argc, char *argv[])
             j++;
         }
     }
-    root = NULL;
+    root = nullptr;
 
     Cfn = 0;
     np = argv;
     Line_num = 0; /* reset line number */
     while (++Cfn <= N_files)
-        if ((Fd = fopen(*++np, "r")) == NULL)
+        if ((Fd = fopen(*++np, "r")) == nullptr)
             printf("as: can't open %s\n", *np);
         else
         {
@@ -93,7 +93,7 @@ int main(int argc, char *argv[])
         np = argv;
         Line_num = 0;
         while (++Cfn <= N_files)
-            if ((Fd = fopen(*++np, "r")) != NULL)
+            if ((Fd = fopen(*++np, "r")) != nullptr)
             {
                 make_pass();
                 fclose(Fd);
@@ -136,7 +136,7 @@ void initialize()
     if (pos != std::string::npos)
         Obj_name.erase(pos);
     Obj_name += ".s19";
-    if ((Objfil = fopen(Obj_name.c_str(), "w")) == NULL)
+    if ((Objfil = fopen(Obj_name.c_str(), "w")) == nullptr)
         fatal("Can't create object file");
     fwdinit();   /* forward ref init */
     localinit(); /* target machine specific init. */
@@ -160,7 +160,7 @@ void make_pass()
 #ifdef DEBUG
     printf("Pass %d\n", Pass);
 #endif
-    while (fgets(Line, MAXBUF - 1, Fd) != (char *)NULL)
+    while (fgets(Line, MAXBUF - 1, Fd) != (char *)nullptr)
     {
         Line_num++;
         P_force = 0; /* No force unless bytes emitted */
@@ -229,7 +229,7 @@ void process()
         if (*Label != EOS)
             install(Label, Pc);
     }
-    else if ((i = mne_look(Op)) == NULL)
+    else if ((i = mne_look(Op)) == nullptr)
     {
         char msg[80];
         sprintf(msg, "Unrecognized Mnemonic '%s'", Op);

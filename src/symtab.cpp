@@ -25,7 +25,7 @@ int install(const char *str, int val)
         error("Illegal Symbol Name");
         return (NO);
     }
-    if ((np = lookup(str)) != NULL)
+    if ((np = lookup(str)) != nullptr)
     {
         if (Pass == 2)
         {
@@ -58,15 +58,15 @@ int install(const char *str, int val)
     }
     strcpy(np->name, str);
     np->def = val;
-    np->Lnext = NULL;
-    np->Rnext = NULL;
+    np->Lnext = nullptr;
+    np->Rnext = nullptr;
     lp = (struct link *)alloc(sizeof(struct link));
     np->L_list = lp;
     lp->L_num = Line_num;
-    lp->next = NULL;
+    lp->next = nullptr;
     p = root;
-    backp = NULL;
-    while (p != NULL)
+    backp = nullptr;
+    while (p != nullptr)
     {
         backp = p;
         i = strcmp(str, p->name);
@@ -75,7 +75,7 @@ int install(const char *str, int val)
         else
             p = p->Rnext;
     }
-    if (backp == NULL)
+    if (backp == nullptr)
         root = np;
     else if (strcmp(str, backp->name) < 0)
         backp->Lnext = np;
@@ -93,7 +93,7 @@ struct nlist *lookup(const char *name)
     int i;
 
     np = root;
-    while (np != NULL)
+    while (np != nullptr)
     {
         i = strcmp(name, np->name);
         if (i == 0)
@@ -109,7 +109,7 @@ struct nlist *lookup(const char *name)
     Last_sym = 0;
     if (Pass == 2)
         error((std::string{"symbol '"} + name + "' Undefined on pass 2").c_str());
-    return (NULL);
+    return (nullptr);
 }
 
 #define NMNE (sizeof_table() / sizeof(struct oper))
@@ -153,5 +153,5 @@ struct oper *mne_look(char *str)
             return (mid);
     }
 
-    return (NULL);
+    return (nullptr);
 }

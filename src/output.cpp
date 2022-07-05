@@ -11,7 +11,7 @@
  */
 void stable(struct nlist *ptr)
 {
-    if (ptr != NULL)
+    if (ptr != nullptr)
     {
         stable(ptr->Lnext);
         printf("%-10s %04x\n", ptr->name, ptr->def);
@@ -25,12 +25,12 @@ void cross(struct nlist *point)
 {
     struct link *tp;
     int i = 1;
-    if (point != NULL)
+    if (point != nullptr)
     {
         cross(point->Lnext);
         printf("%-10s %04x *", point->name, point->def);
         tp = point->L_list;
-        while (tp != NULL)
+        while (tp != nullptr)
         {
             if (i++ > 10)
             {
