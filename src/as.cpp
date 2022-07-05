@@ -30,7 +30,14 @@ int main(int argc, char *argv[])
 
     if (argc < 2)
     {
-        printf("Usage: %s [files]\n", argv[j]);
+        printf("Usage: %s <files> [-options]\n"
+            "Options:\n"
+            "l       Produce a listing\n"
+            "nol     Do not produce a listing\n"
+            "c       Print cycle counts in listing\n"
+            "noc     Do not print cycle counts in listing\n"
+            "s       Produce a symbol table\n"
+            "cre     Produce a symbol cross reference table\n", argv[j]);
         exit(1);
     }
     Argv = argv;
