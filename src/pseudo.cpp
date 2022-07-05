@@ -2,12 +2,16 @@
  *      pseudo --- pseudo op processing
  */
 
-//#include "pseudo.h"
 #include "as.h"
 #include "eval.h"
 #include "globals.h"
 #include "symtab.h"
 #include "util.h"
+
+#include <algorithm>
+#include <cctype>
+#include <iterator>
+#include <string>
 
 #define RMB     0  /* Reserve Memory Bytes         */
 #define FCB     1  /* Form Constant Bytes          */
@@ -36,6 +40,14 @@ struct oper pseudo[] = {
 CpuType cpuType = CPU_UNKNOWN;
 
 int sizeof_pseudo() { return sizeof(pseudo); }
+
+static std::string to_lower(const char *text)
+{
+    std::string result;
+    std::transform(text, text + strlen(text), std::back_inserter(result),
+                   [](char c) { return static_cast<char>(std::tolower(c)); });
+    return result;
+}
 
 /*
  *      do_pseudo --- do pseudo op processing
@@ -158,8 +170,10 @@ void do_pseudo(int op /* which op */)
             Sflag = 1;
         else if (head(Operand, "cre"))
             CREflag = 1;
+        else if (head(to_lower(Operand).c_str(), "cmos"))
+            cpuType = CPU_M6805;
         else
-            error("Unrecognized OPT");
+            error((std::string{"Unrecognized OPT '"} + Operand + "'").c_str());
         break;
     case PAGE: /* go to a new page */
         P_force = 0;
