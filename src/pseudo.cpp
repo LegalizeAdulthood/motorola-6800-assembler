@@ -10,6 +10,7 @@
 
 #include <algorithm>
 #include <cctype>
+#include <cstring>
 #include <iterator>
 #include <string>
 
@@ -44,7 +45,7 @@ int sizeof_pseudo() { return sizeof(pseudo); }
 static std::string to_lower(const char *text)
 {
     std::string result;
-    std::transform(text, text + strlen(text), std::back_inserter(result),
+    std::transform(text, text + std::strlen(text), std::back_inserter(result),
                    [](char c) { return static_cast<char>(std::tolower(c)); });
     return result;
 }
