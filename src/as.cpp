@@ -180,8 +180,8 @@ void make_pass()
  */
 int parse_line()
 {
-    register char *ptrfrm = Line;
-    register char *ptrto = Label;
+    char *ptrfrm = Line;
+    char *ptrto = Label;
 
     if (*ptrfrm == '*' || *ptrfrm == '\n')
         return (0); /* a comment line */
@@ -219,7 +219,7 @@ int parse_line()
  */
 void process()
 {
-    register struct oper *i;
+    struct oper *i;
 
     Old_pc = Pc;    /* setup `old' program counter */
     Optr = Operand; /* point to beginning of operand field */

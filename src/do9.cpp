@@ -627,7 +627,7 @@ static int rtype(int r)
  */
 static int set_mode()
 {
-    register char *p;
+    char *p;
 
     if (*Operand == '#')
         return (IMMED); /* immediate addressing */

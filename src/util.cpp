@@ -142,7 +142,7 @@ void hexout(int byte)
 void print_line()
 {
     int i;
-    register char *ptr;
+    char *ptr;
 
     printf("%04d ", Line_num);
     if (P_total || P_force)
